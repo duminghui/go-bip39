@@ -3,36 +3,9 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:696c8d2d1fcd5d13bf58203593fc640b70917a7b9871741878efe86db55ec830"
-  name = "github.com/FactomProject/basen"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "fe3947df716ebfda9847eb1b9a48f9592e06478c"
-
-[[projects]]
-  branch = "master"
-  digest = "1:7e37fe0e25f70f38f090697a2850fbb53b6ac8051a29ff202d8a89a09292f55a"
-  name = "github.com/FactomProject/btcutilecc"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "d3a63a5752ecf3fbc06bd97365da752111c263df"
-
-[[projects]]
-  branch = "master"
-  digest = "1:ec528a786fa75556deed44de7118a74ced456360e782786a20aed292a03955a5"
-  name = "github.com/tyler-smith/go-bip32"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "2c9cfd17756470a0b7c3e4b7954bae7d11035504"
-
-[[projects]]
-  branch = "master"
-  digest = "1:ba3904b7f7c24e16b537a584247d9e13d8e9822a8a976f91c3bfd70245ecfd58"
+  digest = "1:f92f6956e4059f6a3efc14924d2dd58ba90da25cc57fe07ae3779ef2f5e0c5f2"
   name = "golang.org/x/crypto"
-  packages = [
-    "pbkdf2",
-    "ripemd160",
-  ]
+  packages = ["pbkdf2"]
   pruneopts = "UT"
   revision = "de0752318171da717af4ce24d0a2e8626afaeb11"
   source = "github.com/golang/crypto"
@@ -40,9 +13,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = [
-    "github.com/tyler-smith/go-bip32",
-    "golang.org/x/crypto/pbkdf2",
-  ]
+  input-imports = ["golang.org/x/crypto/pbkdf2"]
   solver-name = "gps-cdcl"
   solver-version = 1

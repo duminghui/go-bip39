@@ -33,7 +33,3 @@
   branch = "master"
   name = "golang.org/x/crypto"
   source = "github.com/golang/crypto"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/tyler-smith/go-bip32"

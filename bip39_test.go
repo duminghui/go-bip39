@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"math/big"
 	"testing"
-
-	"github.com/tyler-smith/go-bip32"
 )
 
 func TestNewEntropy(t *testing.T) {
@@ -71,13 +69,6 @@ func TestNewSeedWithValidMnemonic(t *testing.T) {
 	fmt.Println(len(masterPriKey))
 	masterChainCode := masterKey[32:]
 	fmt.Printf("masterChainCode: %x\n", masterChainCode)
-	mk, _ := bip32.NewMasterKey(seed)
-	fmt.Printf("mk:%x\n", mk.Key)
-	mk2, _ := mk.Serialize()
-	fmt.Printf("mk2:%x\n", mk2)
-	fmt.Printf("mk3:%x\n", mk.PublicKey())
-	fmt.Println("mk4:", mk.B58Serialize())
-	fmt.Printf("mk5:%x\n", mk.ChainCode)
 }
 func TestFunction(t *testing.T) {
 	var tmp big.Int
