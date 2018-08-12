@@ -146,13 +146,13 @@ func Mnemonic2Entropy(mnemonic string) ([]byte, error) {
 	case 12:
 		_mnemonicInfo = mnemonic12
 	case 15:
-		_mnemonicInfo = mnemonic12
+		_mnemonicInfo = mnemonic15
 	case 18:
-		_mnemonicInfo = mnemonic12
+		_mnemonicInfo = mnemonic18
 	case 21:
-		_mnemonicInfo = mnemonic12
+		_mnemonicInfo = mnemonic21
 	case 24:
-		_mnemonicInfo = mnemonic12
+		_mnemonicInfo = mnemonic24
 	default:
 		return nil, ErrorMnemonic
 	}

@@ -52,7 +52,7 @@ func TestMnemonic2Entropy(t *testing.T) {
 
 func TestNewSeedWithValidMnemonic(t *testing.T) {
 	// t.SkipNow()
-	entropy, _ := NewEntropy(128)
+	entropy, _ := NewEntropy(256)
 	fmt.Printf("entropy: %x\n", entropy)
 	mnemonic, _ := NewMnemonic(entropy)
 	// mnemonic = "much local guess refuse cannon project march dwarf color sleep fringe safe"
