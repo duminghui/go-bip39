@@ -52,14 +52,14 @@ func TestMnemonic2Entropy(t *testing.T) {
 
 func TestNewSeedWithValidMnemonic(t *testing.T) {
 	// t.SkipNow()
-	entropy, _ := NewEntropy(256)
+	entropy, _ := NewEntropy(128)
 	fmt.Printf("entropy: %x\n", entropy)
 	mnemonic, _ := NewMnemonic(entropy)
 	// mnemonic = "much local guess refuse cannon project march dwarf color sleep fringe safe"
 	// mnemonic = "army van defense carry jealous true garbage claim echo media make crunch"
 	fmt.Println("mnemonic:", mnemonic)
 	seed, _ := NewSeedWithValidMnemonic(mnemonic, "")
-	fmt.Printf("seed: %x\n", seed)
+	fmt.Printf("seed: %x , %d\n", seed, len(seed))
 	hmac512 := hmac.New(sha512.New, []byte("Bitcoin seed"))
 	hmac512.Write(seed)
 	masterKey := hmac512.Sum(nil)
