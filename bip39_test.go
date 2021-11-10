@@ -9,18 +9,35 @@ import (
 )
 
 func TestNewEntropy(t *testing.T) {
-	// fmt.Println(NewEntropy(256))
+	bitSizeSlice := []int{
+		128, 160, 192, 224, 256,
+	}
+	for _, bitSize := range bitSizeSlice {
+		entropy, err := NewEntropy(bitSize)
+		fmt.Println(bitSize, bitSize/32)
+		if err != nil {
+			fmt.Println(bitSize, err)
+		} else {
+			fmt.Println(bitSize, entropy)
+		}
+	}
 }
 
 func TestNewMnemonic(t *testing.T) {
-	// bytes, _ := NewEntropy(128)
-	// NewMnemonic(bytes)
-	// fmt.Println("mnemonic:", mnemonic)
+	bytes, err := NewEntropy(128)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	mnemonic, err := NewMnemonic(bytes)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("mnemonic:", mnemonic)
 }
 
-// +ignore
 func TestNewSeed(t *testing.T) {
-	t.SkipNow()
 	entropy, _ := NewEntropy(256)
 	fmt.Printf("entropy:%x\n", entropy)
 	mnemonic, _ := NewMnemonic(entropy)
@@ -31,26 +48,11 @@ func TestNewSeed(t *testing.T) {
 
 func TestIsMnemonic(t *testing.T) {
 	t.SkipNow()
-	isMnemonic := IsMnemonic("orient neutral catch matrix reopen fine victory faculty jar clever fold agent stage beyond ride sudden answer maze exercise confirm dentist people shift")
+	isMnemonic := IsMnemonicValid("orient neutral catch matrix reopen fine victory faculty jar clever fold agent stage beyond ride sudden answer maze exercise confirm dentist people shift")
 	fmt.Println(isMnemonic)
 }
 
-func TestMnemonic2Entropy(t *testing.T) {
-	t.SkipNow()
-	entropy, _ := NewEntropy(256)
-	// entropy = make([]byte, 32)
-	fmt.Printf("%x\n", entropy)
-	mnemonic, _ := NewMnemonic(entropy)
-	// mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art"
-	// mnemonic = "genius actress virtual glimpse foot oak expect chalk poem slim now aware math clump awake ostrich short witness pill turn round barely diary rocket"
-	mnemonic = "void come effort suffer camp survey warrior heavy shoot primary clutch crush open amazing screen patrol group space point ten exist slush involve unfold"
-	fmt.Println(mnemonic)
-	entropy2, err := Mnemonic2Entropy(mnemonic)
-	fmt.Printf("%x\n", entropy2)
-	fmt.Println(err)
-}
-
-func TestNewSeedWithValidMnemonic(t *testing.T) {
+func TestNewSeedWithErrorChecking(t *testing.T) {
 	// t.SkipNow()
 	entropy, _ := NewEntropy(128)
 	fmt.Printf("entropy: %x\n", entropy)
@@ -58,7 +60,7 @@ func TestNewSeedWithValidMnemonic(t *testing.T) {
 	// mnemonic = "much local guess refuse cannon project march dwarf color sleep fringe safe"
 	// mnemonic = "army van defense carry jealous true garbage claim echo media make crunch"
 	fmt.Println("mnemonic:", mnemonic)
-	seed, _ := NewSeedWithValidMnemonic(mnemonic, "")
+	seed, _ := NewSeedWithErrorChecking(mnemonic, "")
 	fmt.Printf("seed: %x , %d\n", seed, len(seed))
 	hmac512 := hmac.New(sha512.New, []byte("Bitcoin seed"))
 	hmac512.Write(seed)

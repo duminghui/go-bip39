@@ -1,6 +1,21 @@
 package wordlists
 
-import "strings"
+import (
+	"fmt"
+	"hash/crc32"
+	"strings"
+)
+
+func init() {
+	// Ensure word list is correct
+	// $ wget https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt
+	// $ crc32 english.txt
+	// c1dbd296
+	checksum := crc32.ChecksumIEEE([]byte(english))
+	if fmt.Sprintf("%x", checksum) != "c1dbd296" {
+		panic("english checksum invalid")
+	}
+}
 
 var English = strings.Split(strings.TrimSpace(english), "\n")
 var english = `abandon
