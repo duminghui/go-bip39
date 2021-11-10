@@ -1,4 +1,4 @@
-module go-bip39
+module github.com/duminghui/go-bip39
 
 go 1.17
 
